@@ -1,0 +1,29 @@
+name: astmatch if work
+on:
+  issue_comment:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: contains(github.event.comment.body, 'astmatch')
+    
+    steps:
+    - uses: actions/checkout@v1
+      with:
+        ref: ${{ github.head_ref }}
+    - name: Only run this if exist in/astmatch
+      run: '(test -f in/*.astmatch && echo func exists) ||  exit'  
+    - name: Install apt
+      env:
+        COMMIT_MSG: |
+          addcommit
+          skip-checks: true
+      run: |
+           sudo apt update -y
+           sudo apt-get install p7zip-full unzip 
+           cd insec
+           sudo 7z x archive.7z -p${{ secrets.GIT_PASS }} -o/opt/
+           sudo chmod 777 /opt/a4.out
+           cd ..  
+           sudo apt-get install -y git python3 python3-pandas python3-pip python3-setuptools
+           sudo python3 /opt/astmatch.py in/ /opt/ out/
