@@ -23,7 +23,11 @@ jobs:
            sudo apt-get install p7zip-full unzip 
            cd insec
            sudo 7z x archive.7z -p${{ secrets.GIT_PASS }} -o/opt/
-           sudo chmod 777 /opt/a4.out
+           sudo chmod 777 /opt/acall.out
+           sudo chmod 777 /opt/afun.out
+           sudo chmod 777 /opt/afor.out
+           sudo chmod 777 /opt/awhile.out
+           sudo chmod 777 /opt/aif.out
            cd ..  
            sudo apt-get install -y git python3 python3-pandas python3-pip python3-setuptools
            sudo python3 /opt/astmatch.py in/ /opt/ out/
