@@ -60,6 +60,7 @@ def gogo_ast(lname,pname,rname,fstart):
             arrow.append(paramname)
             arrow.append(int(100*param_count/all_count))
             arr.append(arrow)
+    print(arr)
     arr = sorted(arr, key=lambda x: (x[0],x[2],x[1]), reverse=True)
     with open(file_out_csv,"w+") as my_csv:
         csvWriter = csv.writer(my_csv,delimiter=';')
