@@ -46,6 +46,7 @@ def gogo_ast(lname,pname,rname,fstart):
             print(os.path.join(path, name))
             os.system(file_start+" "+os.path.join(path, name))
     df = pd.read_csv(file_csv,sep='_;_')
+    df = df.fillna(0)
     datanow = len(df['func'].unique())
     arr = []
     for funcname in df['func'].unique():
@@ -56,11 +57,7 @@ def gogo_ast(lname,pname,rname,fstart):
             param_count = len(df1[df1['param'].isin([paramname])])
             arrow.append(all_count)
             arrow.append(param_count)
-            arrow.append(funcname)
-            if ">" in funcname:
-                funcname=funcname.replace(">","))")
-            if "<" in funcname:
-                funcname=funcname.replace("<","((")    
+            arrow.append(funcname)   
             arrow.append(paramname)
             arrow.append(int(100*param_count/all_count))
             arr.append(arrow)
