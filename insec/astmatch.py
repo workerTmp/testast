@@ -58,9 +58,9 @@ def gogo_ast(lname,pname,rname,fstart):
             arrow.append(param_count)
             arrow.append(funcname)
             if ">" in funcname:
-                funcname=funсname.replace(">","))")
+                funcname=funcname.replace(">","))")
             if "<" in funcname:
-                funcname=funсname.replace("<","((")    
+                funcname=funcname.replace("<","((")    
             arrow.append(paramname)
             arrow.append(int(100*param_count/all_count))
             arr.append(arrow)
