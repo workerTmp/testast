@@ -43,8 +43,11 @@ def gogo_ast(lname,pname,rname,fstart):
         os.system("echo \"func_;_param_;_colum_start_;_colum_end_;_src_path\" >> "+file_csv)
     for path, subdirs, files in os.walk(foldname):
         for name in files:
-            print(os.path.join(path, name))
-            os.system(file_start+" "+os.path.join(path, name))
+            tmpname=os.path.join(path, name)
+            if name.endswith("fn"):
+                os.rename(tmpname,tmpname+".c")
+                tmpname=tmpname+".c"
+            os.system(file_start+" "+tmpname)
     df = pd.read_csv(file_csv,sep='_;_')
     df = df.fillna(0)
     datanow = len(df['func'].unique())
